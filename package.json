@@ -1,0 +1,33 @@
+{
+  "name": "Static",
+  "version": "0.0.1",
+  "description": "Base Static",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dope/static"
+  },
+  "keywords": [
+    "sass",
+    "bem",
+    "html5",
+    "framework"
+  ],
+  "author": "Joe Richardson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dope/static/issues"
+  },
+  "homepage": "https://github.com/dope/static",
+  "devDependencies": {
+    "browser-sync": "^2.7.12",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-sass": "^2.0.2"
+  }
+}
