@@ -1,0 +1,27 @@
+.msg {
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 500;
+    padding: 10px 0;
+
+    p {
+        text-align: center;
+        color: $color-white;
+    }
+
+    &__close {
+        position: fixed;
+        top: -10px;
+        left: 20px;
+        font-size: 2rem;
+        color: $color-white;
+        cursor: pointer;
+    }
+
+    &--success {
+        background: $color-success;
+    }
+}

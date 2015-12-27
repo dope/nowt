@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $base-font;
+  line-height: $line-height;
+  font-weight: 300;
+  background: $color-white;
+}
+
+input, textarea {
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  appearance: none;
+}
+
+ul {
+  li {
+    list-style-type: none;
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// clearfix
+.cf {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.spin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+}

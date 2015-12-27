@@ -1,0 +1,147 @@
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: darken($color-white, 5%);
+  animation: up .5s ease-in-out;
+
+  @include small {
+    display: none;
+  }
+
+  &__title {
+    border: 0;
+    font-weight: 300;
+    font-family: $font-serif;
+    font-size: 15px;
+    background: transparent;
+    font-style: normal;
+    width: 58%;
+    padding: 8px 0px;
+    @include placeholder($color-black);
+  }
+
+  &__meta {
+    width: 60%;
+    float: left;
+
+    @include small {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  li {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1.2rem 1.5rem 0 1.5rem;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.4;
+    transition: opacity .2s;
+
+    @include small {
+      text-align: center;
+      display: block;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__options {
+    float: right;
+    width: 40%;
+    text-align: right;
+    padding: .75em;
+    background: darken($color-white, 8%);
+    font-size: 0;
+
+    .btn {
+      float: right;
+      width: 20%;
+    }
+
+    @include small {
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+  }
+
+  &__count {
+    position: fixed;
+    top: 20px;
+    right: 1.5rem;
+    cursor: pointer;
+    display: none;
+    width: 30px;
+    height: 20px;
+    -webkit-appearance: none;
+    border-radius: 0px;
+    border: 0;
+    outline: 0;
+    background: rgba($color-white, .7);
+
+    @include medium {
+      display: block;
+    }
+
+    @include small {
+      display: block;
+    }
+
+    &--toggle {
+      .site-footer__hair {
+        &:nth-child(1) {
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          transform: rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          width: 0;
+          transition: 0s;
+        }
+
+        &:nth-child(3) {
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  &__hair {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $color-accent;
+    transition: .2s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+    }
+  }
+}

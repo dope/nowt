@@ -1,0 +1,23 @@
+.site-content {
+  position: relative;
+  max-width: 700px;
+  width: 90%;
+  margin: 0 auto;
+  animation: .4s hey ease-in-out;
+
+
+  &__textarea {
+    width: 100%;
+    font-family: $font-serif;
+    letter-spacing: 0.01rem;
+    font-style: normal;
+    font-size: 1em;
+    line-height: 1.6;
+    background: transparent;
+    resize: none;
+    border: 0;
+    min-height: 600px;
+    padding-bottom: 30%;
+    padding-top: 50px;
+  }
+}
