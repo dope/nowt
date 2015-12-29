@@ -24,6 +24,6 @@ function destroyClickedElement(event) {
     document.body.removeChild(event.target);
 }
 
-function eraseText() {
-  document.getElementById('inputTextToSave').value = '';
-}
+$('.js-save').on('click', function() {
+    saveTextAsFile();
+});

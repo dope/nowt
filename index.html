@@ -51,19 +51,18 @@
         <span class="site-footer__hair"></span>
       </button>
 
-      <footer class="site-footer cf js-footer">
+      <footer class="site-footer js-footer">
         <div class="site-footer__meta">
           <ul class="counter">
-            <li class="counter__type">Characters: <span class="counter__chars">0</span></li>
-            <li class="counter__type">Words: <span class="counter__words">0</span></li>
-            <li class="counter__type">Lines: <span class="counter__lines">0</span></li>
+            <li class="counter__type"><span class="counter__chars">0</span> Characters</li>
+            <li class="counter__type"><span class="counter__words">0</span> Words</li>
+            <li class="counter__type"><span class="counter__lines">0</span> Lines</li>
           </ul>
         </div>
 
         <div class="site-footer__options">
           <input type="text" id="titleToSave" placeholder="The name of your document" class="site-footer__title" autofocus>
-          <button type="submit" onclick="saveTextAsFile();" class="btn btn--save">Save</button>
-          <button type="reset" onclick="javascript:eraseText();" class="btn btn--clear">Clear</button>
+          <button type="submit" class="js-save btn btn--save">Save</button>
         </div>
       </footer>
     </form>
