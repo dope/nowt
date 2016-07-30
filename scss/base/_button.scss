@@ -1,38 +1,22 @@
 .btn {
-  background: $color-accent;
-  color: $color-white;
+  background: $color-white;
+  color: $color-black;
   border: 0;
   font-size: 12px;
   font-weight: 500;
-  text-transform: uppercase;
   font-family: $font-sans;
   line-height: 2.7;
   padding: 0 1.4rem;
   cursor: pointer;
   outline: none;
-  border: 1px solid $color-accent;
+  border: 1px solid darken($color-white, 10%);
+  border-left: 0;
   transition: .3s;
-  letter-spacing: 2px;
 
   &:hover {
-    background: darken($color-accent, 20%);
-    border-color: darken($color-accent, 20%);
-  }
-
-  &:active {
-    background: lighten($color-accent, 20%);
-    border-color: lighten($color-accent, 20%);
-  }
-
-  &--clear {
-    background: transparent;
-    border-color: darken($color-white, 20%);
-    color: darken($color-white, 40%);
-    margin-right: 0.5em;
-
-    &:hover {
-      background: transparent;
-      border-color: darken($color-white, 40%);
-    }
+      background: $color-black;
+      color: $color-white;
+      border: 1px solid $color-black;
+      border-left: 0;
   }
 }

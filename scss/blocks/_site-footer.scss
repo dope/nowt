@@ -3,8 +3,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  border-top: 1px solid darken($color-white, 10%);
-  background: darken($color-white, 3%);
+  border-top: 1px solid darken($color-white, 4%);
+  background: $color-white;
   animation: up .5s ease-in-out;
   font-size: 0;
   padding: 10px 30px;
@@ -21,6 +21,7 @@
     width: 40%;
     display: inline-block;
     vertical-align: middle;
+    margin-top: 9px;
 
     @include small {
       display: block;
@@ -67,14 +68,12 @@
     width: 60%;
     text-align: right;
     font-size: 0;
-    vertical-align: middle;
+    vertical-align: top;
 
     .btn {
-      margin-right: 10px;
-
-      &:last-of-type {
-        margin-right: 0;
-      }
+      position: relative;
+      top: -1px;
+      margin-left: -20px;
 
         @include small {
           width: 100%;
@@ -99,7 +98,6 @@
   &__title {
     border: 0;
     font-weight: 300;
-    font-family: $font-serif;
     font-size: 13px;
     width: 30%;
     padding: 8px 10px;
@@ -109,8 +107,8 @@
     background: transparent;
     -webkit-appearance: none;
     border-radius: 0;
-    border: 1px solid;
-    border-color: darken($color-white, 20%);
+    border: 1px solid darken($color-white, 10%);
+
 
     @include large {
       width: 70%;
