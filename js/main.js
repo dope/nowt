@@ -84,4 +84,16 @@
     $('.msg').slideUp();
   });
 
+
+    function init() {
+        if (localStorage["message"]) {
+            $('#inputTextArea').val(localStorage["message"]);
+        }
+    }
+
+    init();
+
+    $('.stored').keyup(function () {
+        localStorage[$(this).attr('name')] = $(this).val();
+    });
 })(window, document, jQuery);
