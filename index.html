@@ -7,45 +7,25 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-  <img class="spin" src="img/spin.svg" alt="">
-  <div class="msg msg--success">
-    <p>You have successfully downloaded your file.</p>
-    <span class="msg__close">&times;</span>
-  </div>
   <main>
 
     <form>
       <main class="site-content">
         <form action="">
-          <textarea name="message" class="site-content__textarea stored" id="inputTextArea" placeholder="Type away..."></textarea>
+          <textarea autofocus name="message" class="site-content__textarea" id="textarea" placeholder="Type away..."></textarea>
         </form>
       </main>
 
-      <button class="site-footer__count js-count">
-        <span class="site-footer__hair"></span>
-        <span class="site-footer__hair"></span>
-        <span class="site-footer__hair"></span>
-      </button>
-
       <footer class="site-footer js-footer">
-        <div class="site-footer__meta">
-          <ul class="counter">
-            <li class="counter__type"><span class="counter__chars">0</span> Characters</li>
-            <li class="counter__type"><span class="counter__words">0</span> Words</li>
-            <li class="counter__type"><span class="counter__lines">0</span> Lines</li>
-          </ul>
-        </div>
-
         <div class="site-footer__options">
-          <input type="text" id="titleToSave" placeholder="The name of your document" class="site-footer__title" autofocus>
-          <button type="submit" class="js-save btn btn--save">Save</button>
+          <input type="text" id="input-name" placeholder="The name of your document" class="site-footer__title"><!--
+          --><button type="submit" class="js-save btn btn--save">Save</button>
         </div>
       </footer>
+
     </form>
   </main>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/save.js"></script>
 </body>
 </html>

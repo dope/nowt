@@ -7,192 +7,31 @@
   background: $color-white;
   animation: up .5s ease-in-out;
   font-size: 0;
-  padding: 10px 30px;
-
-  @include small {
-    display: none;
-  }
-
-  @include medium {
-    display: none;
-  }
-
-  &__meta {
-    width: 40%;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 9px;
-
-    @include small {
-      display: block;
-      width: 100%;
-    }
-
-    @include medium {
-      width: 100%;
-    }
-  }
-
-  li {
-    list-style: none;
-    display: inline-block;
-    vertical-align: top;
-    padding: 0;
-    font-size: 10px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.4;
-    transition: opacity .2s;
-    margin-right: 10px;
-
-    @include small {
-      text-align: center;
-      display: block;
-      font-size: 13px;
-      opacity: 0.6;
-      margin-right: 0;
-    }
-
-    @include medium {
-      text-align: center;
-      display: block;
-      font-size: 13px;
-      opacity: 0.6;
-      margin-right: 0;
-    }
-  }
+  padding: 10px 0;
 
   &__options {
-    display: inline-block;
-    width: 60%;
-    text-align: right;
-    font-size: 0;
-    vertical-align: top;
+    max-width: 650px;
+    width: 95%;
+    margin: 0 auto;
+
+    input {
+      display: inline-block;
+      vertical-align: middle;
+      width: calc(100% - 100px);
+      min-height: 40px;
+      border: 1px solid darken($color-white, 10%);
+      padding-left: 15px;
+      font-size: 12px;
+      font-weight: 300;
+      font-family: $font-sans;
+    }
 
     .btn {
+      display: inline-block;
+      vertical-align: middle;
       position: relative;
-      top: -1px;
-      margin-left: -20px;
-
-        @include small {
-          width: 100%;
-        }
-    }
-
-    @include small {
-      width: 100%;
-      display: block;
-      text-align: center;
-      padding: 1.5rem 0;
-    }
-
-    @include medium {
-      width: 100%;
-      display: block;
-      text-align: center;
-      padding: 1.5rem 0;
-    }
-  }
-
-  &__title {
-    border: 0;
-    font-weight: 300;
-    font-size: 13px;
-    width: 30%;
-    padding: 8px 10px;
-    margin-right: 20px;
-    font-style: normal !important;
-    @include placeholder($color-black);
-    background: transparent;
-    -webkit-appearance: none;
-    border-radius: 0;
-    border: 1px solid darken($color-white, 10%);
-
-
-    @include large {
-      width: 70%;
-    }
-
-    @include medium {
-      width: 80%;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    @include small {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-  }
-
-  &__count {
-    position: fixed;
-    top: 20px;
-    right: 1.5rem;
-    cursor: pointer;
-    display: none;
-    width: 30px;
-    height: 20px;
-    -webkit-appearance: none;
-    border-radius: 0px;
-    border: 0;
-    outline: 0;
-    background: rgba($color-white, .7);
-
-    @include medium {
-      display: block;
-    }
-
-    @include small {
-      display: block;
-    }
-
-    &--toggle {
-      .site-footer__hair {
-        &:nth-child(1) {
-          top: 0;
-          bottom: 0;
-          margin: auto;
-          transform: rotate(45deg);
-        }
-
-        &:nth-child(2) {
-          width: 0;
-          transition: 0s;
-        }
-
-        &:nth-child(3) {
-          top: 0;
-          bottom: 0;
-          margin: auto;
-          transform: rotate(-45deg);
-        }
-      }
-    }
-  }
-
-  &__hair {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: $color-accent;
-    transition: .2s ease-in-out;
-
-    &:nth-child(1) {
-      top: 0;
-    }
-
-    &:nth-child(2) {
-      top: 0;
-      bottom: 0;
-      margin: auto;
-    }
-
-    &:nth-child(3) {
-      bottom: 0;
+      width: 100px;
+      min-height: 40px;
     }
   }
 }
