@@ -22,7 +22,10 @@ gulp.task('browser-sync', function() {
 });
 
 // default task (just run gulp)
-gulp.task('default', ['sass', 'browser-sync'], function () {
-    gulp.watch("scss/**/*.scss", ['sass']);
-    gulp.watch("*/**/*.html", ['sass']);
+gulp.task('default', ['sass']);
+
+
+gulp.task('watch', ['default', 'browser-sync'], function () {
+  gulp.watch("scss/**/*.scss", ['sass']);
+  gulp.watch("*/**/*.html", ['sass']);
 });
