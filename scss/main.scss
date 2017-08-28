@@ -1,8 +1,3 @@
-/*
- * Static Template by Joe Richardson
- * 2014
- */
-
 // Configuration
 @import 'config/config';
 
@@ -14,8 +9,5 @@
 @import 'base/button';
 
 // Blocks
-@import 'blocks/site-nav';
-@import 'blocks/site-header';
-@import 'blocks/site-content';
-@import 'blocks/site-footer';
-@import 'blocks/msg';
+@import 'modules/editor';
+@import 'modules/preview';

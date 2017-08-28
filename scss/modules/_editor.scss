@@ -1,8 +1,6 @@
-.site-content {
-  position: relative;
-  max-width: 650px;
-  width: 90%;
-  margin: 0 auto;
+.editor {
+  background: $color-white;
+  width: 50%;
 
 
   &__textarea {
@@ -15,8 +13,7 @@
     resize: none;
     border: 0;
     height: 100vh;
-    padding-bottom: 20%;
-    padding-top: 50px;
+    padding: 3vw;
 
     @include small {
       padding-top: 10px;

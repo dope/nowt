@@ -5,13 +5,7 @@ var area     = textarea;
 var fileName;
 
 function saveFile() {
-
-  if (filename.value) {
-    fileName = filename.value + ".txt";
-  } else {
-    fileName = Math.random().toString(36).substring(1) + "_file.txt";
-  }
-
+  fileName = Math.random().toString(36).substring(1) + "_file.txt";
   var blob = new Blob([textarea.value], {type: "text/plain;charset=utf-8"});
   saveAs(blob, fileName);
 }
@@ -1314,3 +1308,9 @@ Markdown Everything
 
 options = {}
 markdownEditor(textarea, options)
+
+var preview = document.querySelector('.preview');
+
+setInterval(function(){
+  preview.innerHTML = marked(textarea.value);
+}, 500);

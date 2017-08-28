@@ -1,0 +1,113 @@
+.preview {
+  position: relative;
+  height: 100vh;
+  width: 50%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 3vw;
+  color: lighten($color-accent, 30%);
+
+  &:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -50px;
+    right: 0;
+    margin: auto;
+    width: 20%;
+    height: 100%;
+    background: $color-accent;
+    content: "";
+    border-radius: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6, {
+    font-weight: 600;
+  }
+
+  ol {
+    list-style: decimal-leading-zero;
+    padding-left: 2vw;
+    margin-bottom: 30px;
+
+    ol {
+      margin-left: 1vw;
+    }
+  }
+
+  ul {
+    padding-left: 2vw;
+    margin-bottom: 30px;
+    list-style-type: disc;
+
+    ul {
+      margin-left: 2vw;
+      margin-bottom: 0;
+    }
+  }
+
+  h1 { margin-bottom: 30px; }
+  h2 { margin-bottom: 20px; }
+  h3, h4, h5, h6 {
+    margin-bottom: 0px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  a {
+    color: $color-white;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  pre {
+    display: block;
+    background: lighten($color-accent, 2%);
+    padding: 1vw;
+    margin-bottom: 30px;
+  }
+
+  table {
+    background: red;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  blockquote {
+    display: block;
+    background: lighten($color-accent, 2%);
+    padding: 1vw;
+    margin-bottom: 30px;
+    border-left: 5px solid darken($color-accent, 5%);
+    line-height: 1.5;
+    box-shadow: 0 4px 10px 0 darken($color-accent, 2%);
+    p {
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+  }
+
+  hr {
+    display: block;
+    border: 0;
+    height: 2px;
+    background: lighten($color-accent, 5%);
+    margin: 30px 0;
+  }
+}

@@ -1,22 +1,31 @@
 .btn {
-  background: $color-white;
-  color: $color-black;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background: darken($color-accent, 35%);
   border: 0;
-  font-size: 12px;
-  font-weight: 500;
-  font-family: $font-sans;
-  line-height: 2.7;
-  padding: 0 1.4rem;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
   cursor: pointer;
   outline: none;
-  border: 1px solid darken($color-white, 10%);
-  border-left: 0;
   transition: .3s;
+  z-index: 100;
 
   &:hover {
-      background: $color-black;
-      color: $color-white;
-      border: 1px solid $color-black;
-      border-left: 0;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    background: #171717;
+    transform: scale(0.9);
+  }
+
+  svg {
+    stroke: #FFF;
+    transform: scale(0.8);
   }
 }

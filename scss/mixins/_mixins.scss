@@ -1,18 +1,3 @@
-// Placeholder
-@mixin placeholder($color) {
-  &.placeholder {
-    color: $color;
-  }
-
-  &:-moz-placeholder {
-    color: $color;
-  }
-
-  &::-webkit-input-placeholder {
-    color: $color;
-  }
-}
-
 // Media Queries
 @mixin small {
   @media (max-width: $small) {
