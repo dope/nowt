@@ -42,4 +42,11 @@ main {
   min-height: 100vh;
   display: flex;
   flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  width: 100%;
+  display: flex;
 }

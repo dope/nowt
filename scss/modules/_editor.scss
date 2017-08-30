@@ -1,6 +1,7 @@
 .editor {
-  background: $color-white;
-  width: 50%;
+  height: 100vh;
+  background: #171717;
+  width: 40%;
 
 
   &__textarea {
@@ -14,6 +15,8 @@
     border: 0;
     height: 100vh;
     padding: 3vw;
+    color: lighten(#242423, 40%);
+    font-family: "Fira Mono";
 
     @include small {
       padding-top: 10px;

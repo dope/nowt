@@ -1,6 +1,6 @@
 .btn {
   position: fixed;
-  bottom: 50px;
+  bottom: 40px;
   right: 50px;
   background: darken($color-accent, 35%);
   border: 0;
@@ -9,7 +9,6 @@
   justify-content: center;
   width: 50px;
   height: 50px;
-  border-radius: 100px;
   cursor: pointer;
   outline: none;
   transition: .3s;

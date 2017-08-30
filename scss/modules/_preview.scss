@@ -1,11 +1,18 @@
 .preview {
   position: relative;
   height: 100vh;
-  width: 50%;
+  width: 60%;
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 3vw;
-  color: lighten($color-accent, 30%);
+  background: $color-white;
+  color: $color-black;
+  font-family: 'PT Serif', serif;
+
+  > * {
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
   h1,
   h2,
@@ -13,7 +20,8 @@
   h4,
   h5,
   h6, {
-    font-weight: 600;
+    font-weight: 400;
+    line-height: 1.1;
   }
 
   ol {
@@ -37,8 +45,8 @@
     }
   }
 
-  h1 { margin-bottom: 30px; }
-  h2 { margin-bottom: 20px; }
+  h1 { font-size: 50px; margin-bottom: 30px; }
+  h2 { font-size: 40px; margin-bottom: 20px; }
   h3, h4, h5, h6 {
     margin-bottom: 0px;
     text-transform: uppercase;
@@ -50,7 +58,7 @@
   }
 
   a {
-    color: $color-white;
+    color: $color-black;
     text-decoration: underline;
 
     &:hover {
@@ -60,13 +68,9 @@
 
   pre {
     display: block;
-    background: lighten($color-accent, 2%);
+    background: darken($color-white, 2%);
     padding: 1vw;
     margin-bottom: 30px;
-  }
-
-  table {
-    background: red;
   }
 
   img {
@@ -77,12 +81,11 @@
 
   blockquote {
     display: block;
-    background: lighten($color-accent, 2%);
+    background: darken($color-white, 5%);
     padding: 1vw;
     margin-bottom: 30px;
-    border-left: 5px solid darken($color-accent, 5%);
+    border-left: 5px solid darken($color-white, 10%);
     line-height: 1.5;
-    box-shadow: 0 4px 10px 0 darken($color-accent, 2%);
     p {
       font-size: 16px;
       margin-bottom: 0;
@@ -93,7 +96,7 @@
     display: block;
     border: 0;
     height: 2px;
-    background: lighten($color-accent, 5%);
+    background: lighten($color-white, 5%);
     margin: 30px 0;
   }
 }
