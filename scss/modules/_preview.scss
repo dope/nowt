@@ -99,4 +99,8 @@
     background: lighten($color-white, 5%);
     margin: 30px 0;
   }
+
+  b, strong {
+    font-weight: 900;
+  }
 }

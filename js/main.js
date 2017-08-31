@@ -3,6 +3,7 @@ var filename = document.querySelector('#input-name');
 var save     = document.querySelector('.js-save');
 var area     = textarea;
 var fileName;
+var preview = document.querySelector('.preview');
 
 function saveFile() {
   fileName = Math.random().toString(36).substring(1) + "_file.txt";
@@ -1309,8 +1310,36 @@ Markdown Everything
 options = {}
 markdownEditor(textarea, options)
 
-var preview = document.querySelector('.preview');
+preview.innerHTML = marked(textarea.value);
 
-setInterval(function(){
-  preview.innerHTML = marked(textarea.value);
-}, 500);
+if (textarea.addEventListener) {
+  textarea.addEventListener('input', function() {
+    preview.innerHTML = marked(textarea.value);
+  }, false);
+} else if (textarea.attachEvent) {
+  textarea.attachEvent('onpropertychange', function() {
+    preview.innerHTML = marked(textarea.value);
+  });
+}
+
+// Drag and
+function handleFileSelect(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+
+  var files = evt.dataTransfer.files; // FileList object.
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    textarea.value = event.target.result;
+  }
+  reader.readAsText(files[0],"UTF-8");
+}
+
+function handleDragOver(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+textarea.addEventListener('dragover', handleDragOver, false);
+textarea.addEventListener('drop', handleFileSelect, false);
