@@ -2,31 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nowt</title>
   <link rel="stylesheet" href="css/main.css">
-  <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <!-- Webfonts are progressive enhancement: if offline, the CSS font stacks
+       fall back to native system serif / monospace faces. -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono|PT+Serif&display=swap" rel="stylesheet">
 </head>
 <body>
   <main>
     <section>
       <div class="editor">
-        <form action="">
-          <textarea autofocus name="message" class="editor__textarea" id="textarea"></textarea>
-        </form>
+        <textarea autofocus name="message" class="editor__textarea" id="textarea" placeholder="Start writing…"></textarea>
       </div>
 
-      <button title="Save File" type="submit" class="js-save btn btn--save">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M3 17v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"></path><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="2" x2="12" y2="16"></line></svg>
-      </button>
-
-      <div class="preview"></div>
+      <div class="preview" id="preview"></div>
     </section>
   </main>
 
-  <script src="//cdn.jsdelivr.net/filesaver.js/1.3.3/FileSaver.min.js"></script>
-  <script src="//cdn.jsdelivr.net/marked/0.3.5/marked.min.js"></script>
-  <script src="js/main.min.js"></script>
+  <div class="toolbar">
+    <button title="Toggle pane (mobile)" type="button" class="js-pane btn btn--pane">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+    </button>
+    <button title="Toggle dark preview" type="button" class="js-theme btn btn--theme">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+    <button title="Save File (Ctrl/⌘+S)" type="button" class="js-save btn btn--save">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"></path><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="2" x2="12" y2="16"></line></svg>
+    </button>
+  </div>
+
+  <script src="js/vendor/marked.min.js"></script>
+  <script src="js/vendor/dompurify.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
