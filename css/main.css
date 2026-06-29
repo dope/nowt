@@ -1,26 +1,53 @@
-/* Nowt — styles. Plain CSS, no build step. Theme lives in the variables below. */
+/* Nowt — styles. Plain CSS, no build step.
+   "Modern product" direction: neutral grays, one restrained accent,
+   soft shadows, rounded corners, crisp sans throughout. All theming lives
+   in the custom properties below; .theme--dark re-themes every surface. */
 
 :root {
-  --bg: #513B56;
-  --editor-bg: #171717;
-  --editor-fg: #8b8b88;
+  /* surfaces */
+  --bg: #e9e9ec;
+  --editor-bg: #fbfbfd;
   --preview-bg: #ffffff;
-  --preview-fg: #000000;
-  --preview-muted: #f2f2f2;
-  --btn-bg: #000000;
-  --btn-fg: #ffffff;
+  --surface-raised: rgba(255, 255, 255, 0.85);
+  --divider: rgba(20, 20, 30, 0.08);
+  --hover: rgba(20, 20, 30, 0.05);
 
-  /* Webfonts with native fallbacks so the app still looks right offline. */
+  /* text */
+  --fg: #2e2e35;
+  --heading: #16161a;
+  --muted: #8a8a94;
+  --code-bg: #f4f4f7;
+
+  /* accent */
+  --accent: #5b5bd6;
+  --accent-contrast: #ffffff;
+
+  --shadow: 0 6px 24px rgba(20, 20, 40, 0.12), 0 1px 2px rgba(20, 20, 40, 0.06);
+  --radius: 12px;
+
+  /* type — Inter everywhere, monospace for the editing surface + code */
+  --font-ui: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --font-serif: "PT Serif", Georgia, Cambria, "Times New Roman", serif;
-  --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  --measure: 68ch;
 }
 
-/* Dark preview */
 .theme--dark {
-  --preview-bg: #1d1d1d;
-  --preview-fg: #d6d6d6;
-  --preview-muted: #2a2a2a;
+  --bg: #0e0e10;
+  --editor-bg: #16161a;
+  --preview-bg: #1b1b1f;
+  --surface-raised: rgba(40, 40, 48, 0.85);
+  --divider: rgba(255, 255, 255, 0.08);
+  --hover: rgba(255, 255, 255, 0.07);
+
+  --fg: #c8c8d0;
+  --heading: #f1f1f4;
+  --muted: #7a7a85;
+  --code-bg: #25252b;
+
+  --accent: #8b8bf0;
+  --accent-contrast: #16161a;
+
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,8 +65,11 @@ html {
 body {
   font-family: var(--font-ui);
   font-size: 16px;
-  line-height: 2;
-  font-weight: 300;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 input, textarea {
@@ -50,103 +80,161 @@ input, textarea {
   appearance: none;
 }
 
-main { min-height: 100vh; min-height: 100dvh; display: flex; flex-flow: wrap; align-items: center; justify-content: center; }
+::selection { background: color-mix(in srgb, var(--accent) 25%, transparent); }
+
+main { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; }
 section { width: 100%; display: flex; }
 
-/* Toolbar -------------------------------------------------------------- */
+/* Toolbar — a soft floating pill of ghost icon buttons -------------------- */
 .toolbar {
   position: fixed;
-  bottom: 40px;
-  right: 50px;
+  bottom: 28px;
+  right: 28px;
   display: flex;
-  gap: 12px;
+  gap: 4px;
+  padding: 6px;
+  background: var(--surface-raised);
+  border: 1px solid var(--divider);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 100;
 }
 
 .btn {
-  background: var(--btn-bg);
-  color: var(--btn-fg);
+  background: transparent;
+  color: var(--muted);
   border: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   cursor: pointer;
   outline: none;
-  transition: 0.3s;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
-.btn:hover { transform: scale(1.1); }
-.btn:active { background: #171717; transform: scale(0.9); }
-.btn svg { transform: scale(0.8); }
+.btn:hover { background: var(--hover); color: var(--accent); }
+.btn:active { transform: scale(0.94); }
+.btn:focus-visible { box-shadow: 0 0 0 2px var(--accent); color: var(--accent); }
+.btn svg { width: 20px; height: 20px; }
 
-/* The pane toggle is only useful on narrow screens. */
 .btn--pane { display: none; }
 
-/* Editor --------------------------------------------------------------- */
-.editor { height: 100vh; height: 100dvh; background: var(--editor-bg); width: 40%; }
+/* Editor ----------------------------------------------------------------- */
+.editor {
+  height: 100vh;
+  height: 100dvh;
+  background: var(--editor-bg);
+  width: 42%;
+  border-right: 1px solid var(--divider);
+}
 .editor__textarea {
   width: 100%;
-  letter-spacing: 0.01rem;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 24px;
+  height: 100vh;
+  height: 100dvh;
+  padding: clamp(24px, 4vw, 64px);
   background: transparent;
   resize: none;
   border: 0;
-  height: 100vh;
-  height: 100dvh;
-  padding: 3vw;
-  color: var(--editor-fg);
+  color: var(--fg);
+  caret-color: var(--accent);
   font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.7;
+  letter-spacing: 0.01rem;
   tab-size: 2;
 }
+.editor__textarea::placeholder { color: var(--muted); }
 
-/* Preview -------------------------------------------------------------- */
+/* Preview ---------------------------------------------------------------- */
 .preview {
   position: relative;
   height: 100vh;
   height: 100dvh;
-  width: 60%;
+  width: 58%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 3vw;
+  padding: clamp(32px, 5vw, 80px) clamp(24px, 4vw, 64px);
   background: var(--preview-bg);
-  color: var(--preview-fg);
-  font-family: var(--font-serif);
-  transition: background 0.3s, color 0.3s;
+  color: var(--fg);
+  transition: background 0.25s ease, color 0.25s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
 }
-.preview > * { max-width: 500px; margin: 0 auto; }
-.preview h1, .preview h2, .preview h3, .preview h4, .preview h5, .preview h6 { font-weight: 400; line-height: 1.1; }
-.preview ol { list-style: decimal-leading-zero; padding-left: 2vw; margin-bottom: 30px; }
-.preview ol ol { margin-left: 1vw; }
-.preview ul { padding-left: 2vw; margin-bottom: 30px; list-style-type: disc; }
-.preview ul ul { margin-left: 2vw; margin-bottom: 0; }
-.preview li { line-height: 1.6; }
-.preview h1 { font-size: 50px; margin-bottom: 30px; }
-.preview h2 { font-size: 40px; margin-bottom: 20px; }
-.preview h3, .preview h4, .preview h5, .preview h6 { margin-bottom: 0; text-transform: uppercase; }
-.preview p { font-size: 18px; margin-bottom: 30px; }
-.preview a { color: inherit; text-decoration: underline; }
-.preview a:hover { text-decoration: none; }
-.preview pre { display: block; background: var(--preview-muted); padding: 1vw; margin-bottom: 30px; overflow-x: auto; }
-.preview code { font-family: var(--font-mono); }
-.preview img { display: block; max-width: 100%; height: auto; }
-.preview blockquote { display: block; background: var(--preview-muted); padding: 1vw; margin-bottom: 30px; border-left: 5px solid rgba(128,128,128,0.3); line-height: 1.5; }
-.preview blockquote p { font-size: 16px; margin-bottom: 0; }
-.preview hr { display: block; border: 0; height: 2px; background: var(--preview-muted); margin: 30px 0; }
-.preview b, .preview strong { font-weight: 900; }
-.preview table { border-collapse: collapse; margin-bottom: 30px; width: 100%; }
-.preview th, .preview td { border: 1px solid var(--preview-muted); padding: 6px 10px; text-align: left; }
-.preview input[type="checkbox"] { margin-right: 8px; }
+.preview::-webkit-scrollbar { width: 10px; }
+.preview::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 10px; }
 
-/* Narrow screens: show one pane at a time, toggled via the pane button. */
+.preview > * { max-width: var(--measure); margin-left: auto; margin-right: auto; }
+
+.preview h1, .preview h2, .preview h3, .preview h4, .preview h5, .preview h6 {
+  color: var(--heading);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 2em 0 0.6em;
+}
+.preview > :first-child { margin-top: 0; }
+.preview h1 { font-size: 2.25rem; letter-spacing: -0.02em; margin-top: 0; }
+.preview h2 { font-size: 1.6rem; }
+.preview h3 { font-size: 1.25rem; }
+.preview h4 { font-size: 1.05rem; }
+.preview h5, .preview h6 { font-size: 0.9rem; color: var(--muted); }
+
+.preview p { margin: 0 0 1.1em; }
+.preview ul, .preview ol { padding-left: 1.4em; margin: 0 0 1.1em; }
+.preview ul { list-style-type: disc; }
+.preview ul ul { list-style-type: circle; margin-bottom: 0; }
+.preview ol { list-style: decimal; }
+.preview li { margin: 0.25em 0; }
+.preview li::marker { color: var(--muted); }
+
+.preview a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+.preview a:hover { border-bottom-color: var(--accent); }
+
+.preview b, .preview strong { font-weight: 700; color: var(--heading); }
+
+.preview code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+}
+.preview pre {
+  background: var(--code-bg);
+  padding: 1em 1.2em;
+  border-radius: var(--radius);
+  margin: 0 0 1.1em;
+  overflow-x: auto;
+}
+.preview pre code { background: none; padding: 0; font-size: 0.85em; }
+
+.preview blockquote {
+  margin: 0 0 1.1em;
+  padding: 0.2em 0 0.2em 1.2em;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+.preview blockquote p { margin-bottom: 0; }
+
+.preview img { display: block; max-width: 100%; height: auto; border-radius: var(--radius); }
+.preview hr { border: 0; height: 1px; background: var(--divider); margin: 2.5em auto; }
+
+.preview table { border-collapse: collapse; width: 100%; margin: 0 auto 1.1em; font-size: 0.95em; }
+.preview th, .preview td { border: 1px solid var(--divider); padding: 0.5em 0.8em; text-align: left; }
+.preview th { background: var(--hover); font-weight: 600; color: var(--heading); }
+
+.preview input[type="checkbox"] { margin-right: 0.5em; accent-color: var(--accent); }
+
+/* Narrow screens: one pane at a time, toggled via the pane button --------- */
 @media (max-width: 40em) {
   .btn--pane { display: flex; }
-  .editor, .preview { width: 100%; }
+  .editor, .preview { width: 100%; border-right: 0; }
   .preview { display: none; }
   body.show-preview .editor { display: none; }
   body.show-preview .preview { display: block; }
-  .toolbar { bottom: 20px; right: 20px; }
-  .editor__textarea { padding-top: 10px; font-size: 14px; line-height: 20px; }
+  .toolbar { bottom: 16px; right: 16px; }
 }
