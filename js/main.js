@@ -170,6 +170,26 @@
     document.body.classList.toggle('show-preview');
   });
 
+  /* ------------------------------------------------------- synced scroll */
+
+  // Keep the two panes scrolled to the same relative position. A short lock
+  // on the pane being scrolled stops the programmatic scroll of the other
+  // pane from bouncing back and fighting the user.
+  var scrollLock = null;
+  function syncScroll(src, dst) {
+    return function () {
+      if (scrollLock && scrollLock !== src) return;
+      scrollLock = src;
+      var srcMax = src.scrollHeight - src.clientHeight;
+      var ratio = srcMax > 0 ? src.scrollTop / srcMax : 0;
+      dst.scrollTop = ratio * (dst.scrollHeight - dst.clientHeight);
+      clearTimeout(src._scrollTimer);
+      src._scrollTimer = setTimeout(function () { scrollLock = null; }, 100);
+    };
+  }
+  textarea.addEventListener('scroll', syncScroll(textarea, preview), { passive: true });
+  preview.addEventListener('scroll', syncScroll(preview, textarea), { passive: true });
+
   /* -------------------------------------------------------------- startup */
 
   render();
