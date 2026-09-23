@@ -229,6 +229,152 @@ section { width: 100%; display: flex; }
 
 .preview input[type="checkbox"] { margin-right: 0.5em; accent-color: var(--accent); }
 
+/* Notes sidebar (slides in over the editor) ------------------------------ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  max-width: 85vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--editor-bg);
+  border-right: 1px solid var(--divider);
+  box-shadow: var(--shadow);
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+  z-index: 200;
+}
+body.sidebar-open .sidebar { transform: none; }
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 20, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 150;
+}
+body.sidebar-open .scrim { opacity: 1; pointer-events: auto; }
+
+.sidebar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 18px 10px;
+}
+.sidebar__title { font-weight: 600; color: var(--heading); font-size: 0.95rem; }
+
+.btn-text {
+  background: transparent;
+  border: 1px solid var(--divider);
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn-text:hover { background: var(--hover); }
+
+.sidebar__search { padding: 0 18px 12px; }
+.sidebar__search input {
+  width: 100%;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--fg);
+  background: var(--hover);
+  border: 1px solid var(--divider);
+  border-radius: 9px;
+  padding: 8px 12px;
+}
+.sidebar__search input::placeholder { color: var(--muted); }
+.sidebar__search input:focus { border-color: var(--accent); }
+
+.notes {
+  list-style: none;
+  margin: 0;
+  padding: 0 10px 18px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
+}
+.note {
+  position: relative;
+  padding: 10px 34px 10px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.note:hover { background: var(--hover); }
+.note:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+.note--active { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.note--active .note__title { color: var(--accent); }
+
+.note__title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.note__snippet {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+.note__delete {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+.note:hover .note__delete, .note:focus-within .note__delete { opacity: 1; }
+.note__delete:hover { background: var(--hover); color: #d64545; }
+
+/* Save-state indicator --------------------------------------------------- */
+.status {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--surface-raised);
+  border: 1px solid var(--divider);
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 120;
+}
+.status[data-state="saving"], .status[data-state="saved"], .status[data-state="error"] { opacity: 1; }
+.status[data-state="saved"]::before { content: "✓ "; color: var(--accent); }
+.status[data-state="error"] { color: #d64545; border-color: color-mix(in srgb, #d64545 40%, var(--divider)); }
+
 /* Narrow screens: one pane at a time, toggled via the pane button --------- */
 @media (max-width: 40em) {
   .btn--pane { display: flex; }
